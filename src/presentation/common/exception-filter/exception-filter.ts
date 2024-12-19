@@ -22,7 +22,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         const context = host.switchToHttp();
         const response = context.getResponse();
 
-        if(exception instanceof Error){
+        if(exception instanceof HttpException){
+            return response.status(exception.getStatus()).json({
+                message: exception.message
+            });
+        }
+        else if(exception instanceof Error){
             const httpError = this.fromError(exception);
             return response.status(httpError.getStatus()).json({
                 message: httpError.message

@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
-import { UpdateAddressDTO } from '../../../domain/dtos/address.dto';
+import { Body, Controller, Get, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { UpdateAddressDTO, UpdateAddressQueryDto } from '../../../domain/dtos/address.dto';
 import { GetAllAdressesUseCase } from '../../../application/usecases/address/get-all-addresses.usecase';
 import { UpdateAddressUseCase } from '../../../application/usecases/address/update-address.usecase';
 
@@ -18,12 +18,18 @@ export class AddressController {
 
     }
 
-    @Post("/:id")
-    async updateAddress( @Param("id", ParseIntPipe) id: number, @Body() updateAddressDto: UpdateAddressDTO ){
+    @Post()
+    async updateAddress( 
+        @Query() updateAddressQueryDto: UpdateAddressQueryDto,
+        @Body() updateAddressDto: UpdateAddressDTO 
+    ){
      
         return {
             "message": "Dirección actualizada correctamente",
-            "data": await this.updateAddressUseCase.execute(id, updateAddressDto),
+            "data": await this.updateAddressUseCase.execute(
+                updateAddressQueryDto.id,
+                updateAddressDto
+            ),
         };
         
     }
