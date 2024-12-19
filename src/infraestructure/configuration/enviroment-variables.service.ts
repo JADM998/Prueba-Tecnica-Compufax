@@ -24,10 +24,10 @@ export class EnvironmentVariablesService implements DatabaseConfig {
         return this.configService.get<string>("DATABASE_NAME", "mysql")
     }
     getDatabaseUser(): string {
-        return this.configService.get<string>("DATABASE_", "root")
+        return this.configService.get<string>("DATABASE_USER", "root")
     }
     getDatabasePassword(): string | undefined {
-        return this.configService.get<string>("DATABASE_");
+        return this.configService.get<string>("DATABASE_PASSWORD");
     }
 
 }
