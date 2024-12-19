@@ -1,0 +1,10 @@
+
+
+export class AppTokens {
+
+    static SQL_DATASOURCE = "SQL_DATASOURCE";
+    static ADDRESS_REPOSITORY = "ADDRESS_REPOSITORY";
+    static ORDER_REPOSITORY = "ORDER_REPOSITORY";
+    static CLIENT_REPOSITORY = "CLIENT_REPOSITORY";
+
+}
