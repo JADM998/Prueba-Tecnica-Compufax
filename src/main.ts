@@ -9,7 +9,10 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter())
 
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true
+    whitelist: true,
+    transform: true,
+    transformOptions: {enableImplicitConversion: true},
+    forbidNonWhitelisted: true,
   }));
 
   await app.listen(process.env.PORT ?? 3000);
